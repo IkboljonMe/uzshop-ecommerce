@@ -1,0 +1,49 @@
+.footer {
+  padding-top: 60px;
+  padding-bottom: 30px;
+  background: var(--primary-color);
+}
+
+.footer__text {
+  line-height: 30px;
+  color: rgba(255, 255, 255, 0.735);
+ }
+.footer__quicl-links > ul li {
+  background: transparent !important;
+}
+.footer__quicl-links > ul li a {
+  color: rgba(255, 255, 255, 0.735);
+  font-size: 0.9rem;
+}
+.quick__links-title {
+  margin-bottom: 20px;
+  color: #fff;
+  font-size: 1.1rem;
+}
+.footer__contacts li span,
+.footer__contacts li p {
+  color: rgba(255, 255, 255, 0.735);
+}
+.footer__contacts li span {
+  font-size: 1.2rem;
+}
+.footer__contacts li p {
+  font-size: 0.9rem;
+}
+.footer__copyright p,
+.footer__copyright span {
+  display: flex;
+  color: rgba(255, 255, 255, 0.735);
+  align-items: center;
+}
+.footer__copyright {
+  display: flex;
+  gap: 3px;
+  margin-top: 50px;
+  font-size: 0.9rem;
+  align-items: center;
+  justify-content: center;
+}
+.footer_text-uzshop {
+  font-size: 1.1rem;
+}

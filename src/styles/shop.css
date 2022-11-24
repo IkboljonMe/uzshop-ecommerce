@@ -1,0 +1,47 @@
+.filter__widget select {
+  padding: 10px 20px;
+  border: 1px solid var(--primary-color);
+  cursor: pointer;
+  border-radius: 5px;
+  background: var(--primary-color);
+  color: #fff;
+}
+.filter__widget select:focus {
+  outline: none !important;
+}
+.filter__widget select option {
+  font-size: 0.9rem;
+}
+.search__box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--primary-color);
+  padding-right: 12px;
+  padding-right: 2;
+}
+.search__box > input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 8px 10px;
+}
+@media only screen and (max-width: 768px) {
+  .filter__widget {
+    margin-bottom: 30px;
+  }
+  .filter__widget select {
+    padding: 7px 20px;
+    font-size: 0.9rem;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .filter__by-category {
+    display: flex;
+    justify-content: center;
+  }
+  .sort__by {
+    display: none;
+  }
+}

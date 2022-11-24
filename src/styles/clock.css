@@ -1,0 +1,8 @@
+@media only screen and (max-width: 992px) {
+  .clock__wrapper {
+    justify-content: center;
+  }
+  .clock__data h1 {
+    font-size: 1.1rem !important;
+  }
+}
