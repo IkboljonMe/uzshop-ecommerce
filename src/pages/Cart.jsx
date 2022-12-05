@@ -52,7 +52,7 @@ const Cart = () => {
                 Taxes and shipping will be calculated in checkout
               </p>
               <button className="buy__btn w-100 pt-15">
-                <Link style={{ color: "white" }} to="/checkout">
+                <Link style={{ color: "white" }} to="/login">
                   Checkout
                 </Link>
               </button>
