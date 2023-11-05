@@ -32,29 +32,34 @@ const Signup = () => {
       );
       const user = userCredential.user;
 
-      const storageRef = ref(storage, `images/${Date.now() + username}`);
-      const uploadTask = uploadBytesResumable(storageRef, file);
+      if (file) {
+        const storageRef = ref(storage, `images/${Date.now() + username}`);
+        const uploadTask = uploadBytesResumable(storageRef, file);
 
-      uploadTask.on(
-        (error) => {
-          toast.error(error.message);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-            await updateProfile(user, {
-              displayName: username,
-              photoURL: downloadURL,
-            });
-            await setDoc(doc(db, "users", user.uid), {
-              uid: user.uid,
-              displayName: username,
-              email,
-              photoURL: downloadURL,
-            });
-          });
-        }
-      );
-      console.log(user.photoURL);
+        uploadTask.on(
+          "state_changed",
+          null,
+          (error) => {
+            toast.error(error.message);
+          },
+          () => {
+            getDownloadURL(uploadTask.snapshot.ref).then(
+              async (downloadURL) => {
+                await updateProfile(user, {
+                  displayName: username,
+                  photoURL: downloadURL,
+                });
+                await setDoc(doc(db, "users", user.uid), {
+                  uid: user.uid,
+                  displayName: username,
+                  email,
+                  photoURL: downloadURL,
+                });
+              }
+            );
+          }
+        );
+      }
 
       setloading(false);
       toast.success("An account created");
@@ -84,8 +89,8 @@ const Signup = () => {
                 <h6 className="fw-bold">Loading.....</h6>
               </Col>
             ) : (
-              <Col lg="6" className=" m-auto text-center">
-                <h3 className=" fw-bold fs-4 ">Sign Up</h3>
+              <Col lg="6" className="m-auto text-center">
+                <h3 className="fw-bold fs-4">Sign Up</h3>
                 <Form className="auth__form" onSubmit={signup}>
                   <FormGroup className="form__group">
                     <input
