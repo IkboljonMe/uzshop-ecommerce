@@ -10,38 +10,21 @@ const Shop = () => {
   const [productsData, setProductsData] = useState(products);
   const handleChange = (event) => {
     const filterValue = event.target.value;
-    if (filterValue === "sofa") {
-      const filteredProducts = products.filter(
-        (item) => item.category === "sofa"
-      );
-      setProductsData(filteredProducts);
-      console.log(productsData.length);
+    if (filterValue === "all") {
+      setProductsData(products);
+      return;
     }
-    if (filterValue === "mobile") {
-      const filteredProducts = products.filter(
-        (item) => item.category === "mobile"
-      );
-      setProductsData(filteredProducts);
-    }
-    if (filterValue === "watch") {
-      const filteredProducts = products.filter(
-        (item) => item.category === "watch"
-      );
-      setProductsData(filteredProducts);
-    }
-    if (filterValue === "wireless") {
-      const filteredProducts = products.filter(
-        (item) => item.category === "wireless"
-      );
-      setProductsData(filteredProducts);
-    }
-    if (filterValue === "chair") {
-      const filteredProducts = products.filter(
-        (item) => item.category === "chair"
-      );
-      setProductsData(filteredProducts);
-    }
+    setProductsData(products.filter((item) => item.category === filterValue));
   };
+
+  const handleSort = (event) => {
+    const sortValue = event.target.value;
+    const sorted = [...productsData].sort((a, b) =>
+      sortValue === "ascending" ? a.price - b.price : b.price - a.price
+    );
+    setProductsData(sorted);
+  };
+
   const handleSearch = (event) => {
     const searchTerm = event.target.value;
     const filteredSearchProducts = products.filter((item) =>
@@ -68,7 +51,7 @@ const Shop = () => {
             >
               <div className="filter__widget">
                 <select onChange={handleChange}>
-                  <option>Filter By Category</option>
+                  <option value="all">Filter By Category</option>
                   <option value="sofa">Sofa</option>
                   <option value="mobile">Mobile</option>
                   <option value="chair">Chair</option>
@@ -87,8 +70,8 @@ const Shop = () => {
               className="sort__by text-end  mb-4  "
             >
               <div className="filter__widget">
-                <select>
-                  <option>Sort By</option>
+                <select onChange={handleSort}>
+                  <option disabled>Sort By</option>
                   <option value="ascending">Ascending</option>
                   <option value="descending">Descending</option>
                 </select>
@@ -102,7 +85,7 @@ const Shop = () => {
                   placeholder="Search....."
                 />
                 <span>
-                  <i class="ri-search-line"></i>
+                  <i className="ri-search-line"></i>
                 </span>
               </div>
             </Col>

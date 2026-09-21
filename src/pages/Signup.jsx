@@ -32,50 +32,27 @@ const Signup = () => {
       );
       const user = userCredential.user;
 
+      let photoURL = null;
       if (file) {
         const storageRef = ref(storage, `images/${Date.now() + username}`);
-        const uploadTask = uploadBytesResumable(storageRef, file);
-
-        uploadTask.on(
-          "state_changed",
-          null,
-          (error) => {
-            toast.error(error.message);
-          },
-          () => {
-            getDownloadURL(uploadTask.snapshot.ref).then(
-              async (downloadURL) => {
-                await updateProfile(user, {
-                  displayName: username,
-                  photoURL: downloadURL,
-                });
-                await setDoc(doc(db, "users", user.uid), {
-                  uid: user.uid,
-                  displayName: username,
-                  email,
-                  photoURL: downloadURL,
-                });
-              }
-            );
-          }
-        );
+        const snapshot = await uploadBytesResumable(storageRef, file);
+        photoURL = await getDownloadURL(snapshot.ref);
       }
+
+      await updateProfile(user, { displayName: username, photoURL });
+      await setDoc(doc(db, "users", user.uid), {
+        uid: user.uid,
+        displayName: username,
+        email,
+        photoURL,
+      });
 
       setloading(false);
       toast.success("An account created");
       navigate("/login");
     } catch (error) {
       setloading(false);
-      toast.error("Something went wrong", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      toast.error(error.message);
     }
   };
 

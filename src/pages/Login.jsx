@@ -17,14 +17,9 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const userCredentials = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const user = userCredentials.user;
+      await signInWithEmailAndPassword(auth, email, password);
       setLoading(false);
-      toast.success("Succesfully logged in");
+      toast.success("Successfully logged in");
       navigate("/checkout");
     } catch (error) {
       setLoading(false);

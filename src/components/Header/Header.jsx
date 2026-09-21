@@ -37,28 +37,31 @@ const Header = () => {
   const { currentUser } = useAuth();
 
   const stickyHeaderFunc = () => {
-    window.addEventListener("scroll", () => {
-      if (
-        document.body.scrollTop > 80 ||
-        document.documentElement.scrollTop > 80
-      ) {
-        headerRef.current.classList.add("sticky__header");
-      } else {
-        headerRef.current.classList.remove("sticky__header");
-      }
-    });
+    if (
+      document.body.scrollTop > 80 ||
+      document.documentElement.scrollTop > 80
+    ) {
+      headerRef.current.classList.add("sticky__header");
+    } else {
+      headerRef.current.classList.remove("sticky__header");
+    }
   };
 
   const logout = () => {
-    signOut(auth).then(() => toast.success("Logged out"), navigate("/home"));
-    profileActionsToggle().catch((error) => {
-      toast.error(error.message);
-    });
+    signOut(auth)
+      .then(() => {
+        toast.success("Logged out");
+        profileActionsToggle();
+        navigate("/home");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
   useEffect(() => {
-    stickyHeaderFunc();
+    window.addEventListener("scroll", stickyHeaderFunc);
     return () => window.removeEventListener("scroll", stickyHeaderFunc);
-  });
+  }, []);
   const menuToggle = () => {
     menuRef.current.classList.toggle("active__menu");
   };
@@ -98,11 +101,11 @@ const Header = () => {
             </div>
             <div className="nav__icons">
               <span className="fav__icon">
-                <i class="ri-heart-line"></i>
+                <i className="ri-heart-line"></i>
                 <span className="badge">1</span>
               </span>
               <span className="cart__icon" onClick={navigateToCart}>
-                <i class="ri-shopping-bag-line"></i>
+                <i className="ri-shopping-bag-line"></i>
                 <span className="badge">{totalQuantity}</span>
               </span>
               <div className="profile">
@@ -136,7 +139,7 @@ const Header = () => {
 
               <div className="mobile__menu">
                 <span onClick={menuToggle}>
-                  <i class="ri-menu-line"></i>
+                  <i className="ri-menu-line"></i>
                 </span>
               </div>
             </div>

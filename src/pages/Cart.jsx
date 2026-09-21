@@ -34,8 +34,8 @@ const Cart = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {cartItems.map((item, index) => (
-                      <Tr item={item} key={index} />
+                    {cartItems.map((item) => (
+                      <Tr item={item} key={item.id} />
                     ))}
                   </tbody>
                 </table>
@@ -52,7 +52,7 @@ const Cart = () => {
                 Taxes and shipping will be calculated in checkout
               </p>
               <button className="buy__btn w-100 pt-15">
-                <Link style={{ color: "white" }} to="/login">
+                <Link style={{ color: "white" }} to="/checkout">
                   Checkout
                 </Link>
               </button>
@@ -82,10 +82,10 @@ const Tr = ({ item }) => {
       </td>
       <td>{item.productName}</td>
       <td>{item.price}</td>
-      <td>{item.quantity}px</td>
+      <td>{item.quantity}</td>
       <td>
         <span>
-          <i onClick={deleteProductHandler} class="ri-delete-bin-line"></i>
+          <i onClick={deleteProductHandler} className="ri-delete-bin-line"></i>
         </span>
       </td>
     </tr>

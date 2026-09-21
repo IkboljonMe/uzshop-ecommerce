@@ -14,12 +14,20 @@ import { toast } from "react-toastify";
 const ProductDetails = () => {
   const { id } = useParams();
   const [tab, setTab] = useState("desc");
-  const [rating, setRating] = useState(null);
   const reviewUser = useRef("");
   const reviewMsg = useRef("");
   const dispatch = useDispatch();
 
   const product = products.find((item) => item.id === id);
+
+  if (!product) {
+    return (
+      <Helmet title="Not found">
+        <CommonSection title="Product not found" />
+      </Helmet>
+    );
+  }
+
   const {
     imgUrl,
     productName,
@@ -31,24 +39,29 @@ const ProductDetails = () => {
     category,
   } = product;
 
-  const relatedProducts = products.filter((item) => item.category === category);
+  const relatedProducts = products.filter(
+    (item) => item.category === category && item.id !== id
+  );
 
   const submitHandler = (event) => {
     event.preventDefault();
-    const reviewUserName = reviewUser.current.value;
-
-    const reviewUserMsg = reviewMsg.current.value;
+    if (!reviewUser.current.value || !reviewMsg.current.value) {
+      toast.error("Please fill in your name and review");
+      return;
+    }
+    toast.success("Thanks for your review!");
+    event.target.reset();
   };
   const addToCart = () => {
     dispatch(
       cartActions.addItem({
         id,
         productName,
-        image: imgUrl,
+        imgUrl,
         price,
       })
     );
-    toast.success("Product added succesfully", {
+    toast.success("Product added successfully", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -74,20 +87,20 @@ const ProductDetails = () => {
                 <h2>{productName}</h2>
                 <div className="product__rating">
                   <div>
-                    <span onClick={() => setRating(1)}>
-                      <i class="ri-star-s-fill"></i>
+                    <span>
+                      <i className="ri-star-s-fill"></i>
                     </span>
-                    <span onClick={() => setRating(2)}>
-                      <i class="ri-star-s-fill"></i>
+                    <span>
+                      <i className="ri-star-s-fill"></i>
                     </span>
-                    <span onClick={() => setRating(3)}>
-                      <i class="ri-star-s-fill"></i>
+                    <span>
+                      <i className="ri-star-s-fill"></i>
                     </span>
-                    <span onClick={() => setRating(4)}>
-                      <i class="ri-star-s-fill"></i>
+                    <span>
+                      <i className="ri-star-s-fill"></i>
                     </span>
-                    <span onClick={() => setRating(5)}>
-                      <i class="ri-star-half-s-fill"></i>
+                    <span>
+                      <i className="ri-star-half-s-fill"></i>
                     </span>
                   </div>
                   <p>
@@ -120,7 +133,10 @@ const ProductDetails = () => {
           <Row>
             <Col lg="12">
               <div className="tab__wrapper">
-                <h6 className={`${tab === "desc" ? "active__tab" : ""}`}>
+                <h6
+                  className={`${tab === "desc" ? "active__tab" : ""}`}
+                  onClick={() => setTab("desc")}
+                >
                   Description
                 </h6>
                 <h6
@@ -161,19 +177,19 @@ const ProductDetails = () => {
                       </div>
                       <div className="form__group d-flex align-items-center">
                         <span>
-                          1<i class="ri-star-line"></i>
+                          1<i className="ri-star-line"></i>
                         </span>
                         <span>
-                          2<i class="ri-star-line"></i>
+                          2<i className="ri-star-line"></i>
                         </span>
                         <span>
-                          3<i class="ri-star-line"></i>
+                          3<i className="ri-star-line"></i>
                         </span>
                         <span>
-                          4<i class="ri-star-line"></i>
+                          4<i className="ri-star-line"></i>
                         </span>
                         <span>
-                          5<i class="ri-star-line"></i>
+                          5<i className="ri-star-line"></i>
                         </span>
                       </div>
                       <div className="form__group">

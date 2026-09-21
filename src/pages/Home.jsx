@@ -18,7 +18,7 @@ const Home = () => {
   const [bestSalesProducts, setBestSalesProducts] = useState([]);
   const [mobileProducts, setMobileProducts] = useState([]);
   const [wirelessProducts, setWirelessProducts] = useState([]);
-  const [popularProducts, setPopularProducta] = useState([]);
+  const [popularProducts, setPopularProducts] = useState([]);
 
   useEffect(() => {
     const filteredTrendingProducts = products.filter(
@@ -40,7 +40,7 @@ const Home = () => {
     setBestSalesProducts(filteredBestSalesProducts);
     setMobileProducts(filteredMobileProducts);
     setWirelessProducts(filteredWirelessProducts);
-    setPopularProducta(filteredPopularProducts);
+    setPopularProducts(filteredPopularProducts);
   }, []);
 
   return (
@@ -53,9 +53,8 @@ const Home = () => {
                 <p className="hero__subtitle">Trending product in {year}</p>
                 <h2>Make Your Interior More Minimalistic & Modern</h2>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Optio, ipsam fugit. Quasi placeat, ducimus quo modi fuga
-                  reiciendis sed unde!
+                  Sofas, chairs, phones, watches and more. Find what you need
+                  and get it delivered to your door.
                 </p>
                 <motion.button whileTap={{ scale: 1.2 }} className="buy__btn">
                   <Link
@@ -81,7 +80,7 @@ const Home = () => {
         <Container>
           <Row>
             <Col lg="12" className="text-center">
-              <h2 className="section __title">Trending Products</h2>
+              <h2 className="section__title">Trending Products</h2>
             </Col>
             <ProductsList data={trendingProducts} />
           </Row>

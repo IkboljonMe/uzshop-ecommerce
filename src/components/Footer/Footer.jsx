@@ -44,24 +44,24 @@ const Footer = () => {
               <ListGroup className="footer__contacts">
                 <ListGroupItem className="align-items-center d-flex gap-3 ps-0 border-0">
                   <span>
-                    <i class="ri-map-pin-line"></i>
+                    <i className="ri-map-pin-line"></i>
                   </span>
                   <p>Grojecka 70, Warsaw</p>
                 </ListGroupItem>
                 <ListGroupItem className="align-items-center d-flex gap-3 ps-0 border-0">
                   <span>
-                    <i class="ri-phone-line"></i>
+                    <i className="ri-phone-line"></i>
                   </span>
                   <p>+48 600 516 406</p>
                 </ListGroupItem>
                 <ListGroupItem className="align-items-center d-flex gap-3 ps-0 border-0">
                   <span>
-                    <i class="ri-mail-line"></i>
+                    <i className="ri-mail-line"></i>
                   </span>
                   <p>ikboljonme@gmail.com</p>
                 </ListGroupItem>
                 <ListGroupItem className="align-items-center d-flex gap-3 ps-0 border-0">
-                  <i class="ri-whatsapp-line"></i>
+                  <i className="ri-whatsapp-line"></i>
                   <p>WhatsApp</p>
                 </ListGroupItem>
               </ListGroup>
@@ -72,7 +72,7 @@ const Footer = () => {
           <Col lg="12">
             <div className="footer__copyright">
               <span>
-                <i class="ri-copyright-line"></i>
+                <i className="ri-copyright-line"></i>
               </span>
               <p>Copyright {year} developed by Ikboljon. All rights reserved</p>
             </div>
