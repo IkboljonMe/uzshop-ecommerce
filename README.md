@@ -1,74 +1,74 @@
-# E-Commerce Project - UzShop
+# UzShop
 
-## Table of Contents
+An online shop built with React, Redux Toolkit and Firebase. I made it to practice building a full frontend: routing, global state for the cart, and real authentication with Firebase.
 
-1. [Introduction](#introduction)
-2. [Features](#features)
-3. [Technologies](#technologies)
-4. [Setup](#setup)
-5. [Usage](#usage)
-6. [Contributing](#contributing)
-7. [TODO](#todo)
+## What it does
 
-## Introduction
+- Home page with trending products, best sales, new arrivals and a countdown offer
+- Shop page with category filter, price sorting and search
+- Product page with description, reviews and related products
+- Cart with total quantity and subtotal (Redux)
+- Sign up and login with Firebase Auth (with optional profile photo in Firebase Storage)
+- Checkout page is protected, you need to be logged in to open it
 
-An eCommerce project built with ReactJS, Redux, and Firebase for user authentication.
+## Built with
 
-## Features
+- React 18 (Create React App)
+- Redux Toolkit + React Redux
+- React Router v6
+- Firebase (Auth, Firestore, Storage)
+- Reactstrap + Bootstrap 5
+- Framer Motion
+- React Toastify
+- Remix Icon
 
-- User authentication
-- Product browsing and cart management
-- Checkout and order placement
+## How to run
 
-## Technologies
-
-- ReactJS
-- Redux
-- Firebase
-- Other dependencies
-
-## Setup
-
-1. Clone this repository.
-2. Install dependencies:
+1. Clone the repo and install packages
 
 ```bash
+git clone https://github.com/IkboljonMe/uzshop-ecommerce.git
+cd uzshop-ecommerce
 npm install
 ```
 
-4.  Configure Firebase credentials in `.env` or config file.
+2. Create a project in [Firebase console](https://console.firebase.google.com/), turn on **Email/Password** sign in, and create a Firestore database and Storage.
 
-## Usage
+3. Copy `.env.example` to `.env` and fill it with your Firebase web app config
 
-- Development:
-  ```
-  npm start
-  ```
-  The development server runs at `http://localhost:3000`.
-- Production:
-  ```
-  npm run build
-  ```
-  Find the optimized build in the `build` directory, ready for deployment.
+```bash
+cp .env.example .env
+```
 
-## Contributing
+4. Start the app
 
-Contributions to this project are welcome! If you'd like to contribute, please follow these guidelines:
+```bash
+npm start
+```
 
-1. **Issues:** If you find a bug or have a suggestion, please [open an issue](https://github.com/IkboljonMe/uzshop-ecommerce/issues) to discuss it.
+It opens on http://localhost:3000
 
-2. **Pull Requests:** To contribute code or documentation, submit a pull request to the [GitHub repository](https://github.com/IkboljonMe/uzshop-ecommerce/pulls).
+To make a production build run `npm run build`, the files will be in the `build` folder.
 
-3. **Coding Standards:** Ensure that your code follows the project's coding standards and conventions. If any guidelines or specific practices are required, mention them in the pull request description.
+## Project structure
 
-4. **Documentation:** Update the documentation, including the README file, if your changes impact how the project is used.
-
-Thank you for your contributions to this project!
+```
+src/
+  assets/        images and product data
+  components/    Header, Footer, Layout and UI parts
+  custom-hooks/  useAuth hook
+  pages/         Home, Shop, ProductDetails, Cart, Checkout, Login, Signup
+  redux/         store and cart slice
+  routers/       routes and protected route
+```
 
 ## TODO
 
-- [ ] Add more auth methods(like Google, Github and etc)
-- [ ] Better login and register.
+- [ ] Login with Google and GitHub
 - [ ] Forgot password
-- [ ] Strong password, double check, if user is authenticated, navigate to login
-- [ ] Save user in **localStorage**
+- [ ] Save cart in localStorage
+- [ ] Real order placing on checkout
+
+---
+
+Made by [IkboljonMe](https://github.com/IkboljonMe)
